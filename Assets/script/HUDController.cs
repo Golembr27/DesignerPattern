@@ -5,13 +5,19 @@ using UnityEngine;
 
 public class HUDController : MonoBehaviour
 {
-    private void Awake()
+    public HUDController instancia;
+
+    Canvas canvas;
+    TextMeshProUGUI textoVida;
+
+    private void Start()
     {
-        moedaCollider.AoColetouMoeda += atualizarMoedas;
-        //moedaCollider.AoColetouMoeda += () => {GameObject.Find("Canvas").transform.Find("moeda").transform.Find("pontos").GetComponent<TextMeshProUGUI>().text = $"{PlayerController.moedas}";};
+        textoVida = transform.Find("vidas").transform.Find("pontos").GetComponent<TextMeshProUGUI>();
     }
-    public static void atualizarMoedas()
+
+    public void AtualizarVida(int vida)
     {
-        GameObject.Find("Canvas").transform.Find("moeda").transform.Find("pontos").GetComponent<TextMeshProUGUI>().text = $"{PlayerController.moedas}";
+        textoVida.text = vida.ToString();
     }
+
 }

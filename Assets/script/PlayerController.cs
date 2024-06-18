@@ -1,14 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class PlayerController : MonoBehaviour
 {
     public static int moedas;
 
+    public static int vida = 3;
     Rigidbody2D rb;
     float velocidade = 5f;
     public float forcaPulo = 100;
+
+    public static event Action AoMudarVida;
 
     private void Awake()
     {
@@ -35,7 +40,13 @@ public class PlayerController : MonoBehaviour
 
     void AumentarMoedas()
     {
-        velocidade++;
+        moedas++; // Ou moedas = moedas + 1;
+    }
+
+    public void LevarDano()
+    {
+        vida = vida - 1; // Ou Vida--;
+        AoMudarVida();
     }
 
 }

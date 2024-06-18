@@ -10,10 +10,13 @@ public class moedaCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ( collision.CompareTag("Player"))
+        //if ( collision.CompareTag("Player"))
+        if (collision.TryGetComponent<PlayerController>(out PlayerController playerController))
         {
             //AoColetouMoeda?.Invoke();
-            AoColetouMoeda();
+            //AoColetouMoeda(); chamar o evento da moeda
+
+            playerController.LevarDano();
             Destroy(gameObject);
         }
     }
